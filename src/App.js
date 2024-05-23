@@ -40,7 +40,7 @@ function App() {
         )}
      <Modal isOpen= {isOpen} onClose={()=>setIsOpen(false)} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/trending" element={<CategoryVideos />} />
           <Route path="/gaming" element={<CategoryVideos />} />
