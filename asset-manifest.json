@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/nxtwatch/static/css/main.6b704fca.css",
-    "main.js": "/nxtwatch/static/js/main.d84dee6d.js",
+    "main.js": "/nxtwatch/static/js/main.2ed2d901.js",
     "reactPlayerYouTube.js": "/nxtwatch/static/js/reactPlayerYouTube.a5e7237c.chunk.js",
     "reactPlayerSoundCloud.js": "/nxtwatch/static/js/reactPlayerSoundCloud.91ca561e.chunk.js",
     "reactPlayerVimeo.js": "/nxtwatch/static/js/reactPlayerVimeo.24feaed7.chunk.js",
@@ -19,7 +19,7 @@
     "static/js/453.8f15a061.chunk.js": "/nxtwatch/static/js/453.8f15a061.chunk.js",
     "index.html": "/nxtwatch/index.html",
     "main.6b704fca.css.map": "/nxtwatch/static/css/main.6b704fca.css.map",
-    "main.d84dee6d.js.map": "/nxtwatch/static/js/main.d84dee6d.js.map",
+    "main.2ed2d901.js.map": "/nxtwatch/static/js/main.2ed2d901.js.map",
     "reactPlayerYouTube.a5e7237c.chunk.js.map": "/nxtwatch/static/js/reactPlayerYouTube.a5e7237c.chunk.js.map",
     "reactPlayerSoundCloud.91ca561e.chunk.js.map": "/nxtwatch/static/js/reactPlayerSoundCloud.91ca561e.chunk.js.map",
     "reactPlayerVimeo.24feaed7.chunk.js.map": "/nxtwatch/static/js/reactPlayerVimeo.24feaed7.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.6b704fca.css",
-    "static/js/main.d84dee6d.js"
+    "static/js/main.2ed2d901.js"
   ]
 }
