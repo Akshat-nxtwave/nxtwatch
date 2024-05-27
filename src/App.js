@@ -14,8 +14,10 @@ import ContactDetails from "./components/ContactDetails";
 import VideoPage from "./components/VideoPage/index.js";
 import Modal from './components/Modal';
 import NoRouteFound from './components/NoRouteFound';
+import TrafficLight from './components/TrafficLight';
+import { observer } from "mobx-react";
 
-function App() {
+const App = observer(() => {
   const { isDark } = useContext(ThemeContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,11 +49,12 @@ function App() {
           <Route path="/gaming" element={<CategoryVideos />} />
           <Route path="/saved-videos" element={<CategoryVideos />} />
           <Route path="/videos/:id" element={<VideoPage />} />
+          <Route path="/traffic-light" element={<TrafficLight />} />
           <Route path="*" element={<NoRouteFound />} />
         </Routes>
       </OuterContainer>
     </div>
   );
-}
+})
 
 export default App;
