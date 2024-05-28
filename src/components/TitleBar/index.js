@@ -10,8 +10,6 @@ import { observer } from 'mobx-react'
 const TitleBar = observer(({setIsOpen, show = false}) => {
   
   const val = useContext(ThemeContext);
-  const { setIsDark } = val;
-  // console.log(val.setIsDark(), 'ooooooooooopp')
   return (
     show &&
     <Container isDark={val.isDark}>

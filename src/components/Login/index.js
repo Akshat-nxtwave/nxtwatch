@@ -9,14 +9,17 @@ import {
   ErrorMsg,
 } from "./styles";
 import { TailSpin } from "react-loader-spinner";
-
 import Logo from "../Logo";
 import { ThemeContext } from "../../Context/context";
 import useRequest from "../../hooks/useRequest";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
 const Login = () => {
   const { isDark } = useContext(ThemeContext);
   const navigate = useNavigate();
+  const [ getParamsFunction ] = useSearchParams();
+  const paramsPath = getParamsFunction.get("from");
+  
   const { data, error, loading, refetch } = useRequest({
     url: "https://apis.ccbp.in/login/",
     method: "POST",
@@ -29,18 +32,17 @@ const Login = () => {
   const onSubmit = async () => {
     await refetch({ username, password });
   };
-
+ 
   useEffect(() => {
     if (document.cookie.includes("jwtToken")) {
-      navigate("/");
+      navigate(paramsPath);
     }
   }, []);
 
   useEffect(()=>{
     if(data && (error === null || !error)){
-    
         document.cookie = `jwtToken=${data?.jwt_token}`;
-        navigate("/"); 
+        navigate(paramsPath); 
     }
   },[data, error])
 

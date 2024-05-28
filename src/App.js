@@ -1,35 +1,28 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext, lazy, Suspense } from "react";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import { ThemeContext } from "./Context/context";
-import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import CategoryVideos from "./components/CategoryVideos";
 import TitleBar from "./components/TitleBar";
 import { OuterContainer, NavigationSection } from "./App.styles.js";
 import TabsList from "./components/TabsList";
 import ContactDetails from "./components/ContactDetails";
-import VideoPage from "./components/VideoPage/index.js";
+import AuthHandler from "./components/AuthHandler";
 import Modal from './components/Modal';
-import NoRouteFound from './components/NoRouteFound';
 import TrafficLight from './components/TrafficLight';
 import { observer } from "mobx-react";
 
+const CategoryVideos = lazy(() => import('./components/CategoryVideos'));
+const VideoPage = lazy(() => import('./components/VideoPage'));
+const NoRouteFound = lazy(()=>import('./components/NoRouteFound'));
+
 const App = observer(() => {
   const { isDark } = useContext(ThemeContext);
-  const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    if (!document.cookie.includes("jwtToken")) {
-      if (window.location.pathname !== "/login") {
-        navigate("/login");
-      }
-    }
-  }, []);
-
+  
   return (
     <div className={`App ${isDark ? "Dark" : ""}`}>
       <TitleBar show={location.pathname !== "/login"} setIsOpen={setIsOpen}/>
@@ -41,17 +34,22 @@ const App = observer(() => {
           </NavigationSection>
         )}
      <Modal isOpen= {isOpen} onClose={()=>setIsOpen(false)} />
+        <Suspense fallback={<div>Loading...</div>}>
+
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/nxtwatch" index element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/trending" element={<CategoryVideos />} />
-          <Route path="/gaming" element={<CategoryVideos />} />
-          <Route path="/saved-videos" element={<CategoryVideos />} />
-          <Route path="/videos/:id" element={<VideoPage />} />
+          <Route element={<AuthHandler />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/nxtwatch" index element={<Home />} />
+            <Route path="/trending" element={<CategoryVideos />} />
+            <Route path="/gaming" element={<CategoryVideos />} />
+            <Route path="/saved-videos" element={<CategoryVideos />} />
+            <Route path="/videos/:id" element={<VideoPage />} />
+          </Route>
+          <Route path="/login" element={<Login path={location?.pathname || '/'}/>} />
           <Route path="/traffic-light" element={<TrafficLight />} />
           <Route path="*" element={<NoRouteFound />} />
         </Routes>
+        </Suspense>
       </OuterContainer>
     </div>
   );

@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import StoreWrapper from "./Store/mobx";
 import { observer } from "mobx-react";
+import './i18n-configuration';
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const AppWrapper = observer(() => {

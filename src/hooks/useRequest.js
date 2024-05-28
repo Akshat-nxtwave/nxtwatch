@@ -4,11 +4,10 @@ const useRequest = ({ url, method, isAuthRequired = false }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
   const fetchData = async (body) => {
     
     try {
-     
+      
       setError(null);
       setData(null);
       setLoading(true);
