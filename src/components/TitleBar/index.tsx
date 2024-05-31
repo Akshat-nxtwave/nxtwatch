@@ -1,0 +1,45 @@
+
+import { SetStateAction, Dispatch } from 'react'
+import { Container, Button, LogoLink } from './styles'
+import Logo from '../Logo'
+import { useContext } from 'react'
+import { ThemeContext } from '../../utils/ContextUtils'
+import { FaMoon, FaSun,FaUserCircle } from "react-icons/fa";
+import { observer } from 'mobx-react'
+type TitleBarProps = {
+  setIsOpen: Dispatch<SetStateAction<boolean>>,
+  show: boolean
+
+}
+const TitleBar = observer(({setIsOpen, show = false}: TitleBarProps) => {
+  
+  const val = useContext(ThemeContext);
+  return (
+    show &&
+    <Container isDark={val.isDark}>
+        <LogoLink to="/" style={{ padding: "20px 50px", flexGrow: '1' }}> 
+        
+         <Logo 
+          width="150px"
+          url={`https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-${
+            val.isDark ? "dark" : "light"
+          }-theme-img.png`}
+          />
+          </LogoLink>
+         <Logo
+          onClick={() => {val.setIsDark()}}
+          style={{ padding: "20px" }}
+          width="150px"
+          component={val.isDark?<FaSun size="30px"/>:<FaMoon size="30px"/>}
+        />
+        <Logo
+          style={{ padding: "20px" }}
+          width="150px"
+          component={<FaUserCircle size="30px"/>}
+        />
+        <Button isDark={val.isDark} onClick={()=>setIsOpen(true)}>Logout</Button>
+    </Container>
+  )
+})
+
+export default TitleBar
