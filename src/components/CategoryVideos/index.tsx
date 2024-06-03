@@ -15,22 +15,27 @@ const CategoryVideoes = observer(() => {
   const location = useLocation();
   const [list, setList] = useState([]);
   const CONFIGURATION: ConfigType = CATEGORY_CONFIG[location.pathname];
-  
-  const { data, loading, refetch, error } = useRequest({
+  const { data, loading, refetch, error, getVideosData =()=>{} } = useRequest({
     url: CONFIGURATION?.apiUrl || '',
     method: "GET",
     isAuthRequired: true,
     save:true,
+    type: location.pathname
   });
- 
+  
   useEffect(() => {
     if(CONFIGURATION?.saved) { 
         setList(savedVideos);
     }
     else {
-      refetch({});
-      if(data && data?.videos)
-        setList(data.videos || '');
+      const l = getVideosData(location.pathname);
+      if(l?.total) setList(l?.videos);
+      else {
+        refetch({});
+        if(data && data?.videos)
+          setList(data.videos || '');
+
+      }
     }
   }, [JSON.stringify(CONFIGURATION)]);
 
@@ -39,9 +44,6 @@ const CategoryVideoes = observer(() => {
       setList(data?.videos);
     }
   },[data]);
-
-
-
 
 
   return (

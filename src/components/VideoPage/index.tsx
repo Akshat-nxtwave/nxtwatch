@@ -38,8 +38,7 @@ const VideoPage = observer(()=>{
     isAuthRequired: true,
     save: true
   });
-
-  const isSaved = savedVideos.find(
+  const isSaved = (savedVideos||[]).find(
     (video:any) => video.id === data?.video_details?.id
   );
  

@@ -9,11 +9,12 @@ import { ThemeContext } from "../../utils/ContextUtils";
 
 const VideoSection = () => {
   const [searchInput, setSearchInput] = useState("");
-  const { data, loading, refetch, error } = useRequest({
+  const { data, loading, refetch, error, getVideosData =()=>{}} = useRequest({
     url: `https://apis.ccbp.in/videos/all?search=${searchInput}`,
     method: "GET",
     isAuthRequired: true,
-    save: true
+    save: true,
+    type: '/'
   });
   const { isDark } = useContext(ThemeContext);
   
@@ -24,7 +25,10 @@ const VideoSection = () => {
     }
   }
   useEffect(()=>{
-      refetch({})
+    
+    const l = getVideosData('/');
+    if(!l?.total) refetch({});
+      
   },[])
 
   return (
