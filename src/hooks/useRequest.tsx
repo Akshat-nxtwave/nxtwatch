@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { GetJWT } from '../utils/GetJWT';
+import StoreClasses from "../store/mobx";
 
 type useRequestProps = {
   url: string
   method: string
-  isAuthRequired?: Boolean
+  isAuthRequired?: Boolean,
+  save?: Boolean
 }
 
-const useRequest = ({ url, method, isAuthRequired = false }: useRequestProps) => {
+const videosData = new StoreClasses.VideosList();
+
+const useRequest = ({ url, method, isAuthRequired = false, save = false }: useRequestProps) => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
   const fetchData = async (body : Object) => {
     
     try {
@@ -29,16 +33,24 @@ const useRequest = ({ url, method, isAuthRequired = false }: useRequestProps) =>
     })
     .then((res) => res.json())
     .then(d=>{
-      if(d?.error_msg) setError(d);
-      else setData(d);
+      if(!save){
+        if(d?.error_msg) setError(d);
+        else setData(d);
+      }
+      else {
+        videosData.saveVideos(d);
+      }
     });
     setLoading(false);
+
     return response;
     } catch (err: any) {
       setError(err);
     }
   };
+  if(!save)
   return { data, refetch: fetchData, loading, error };
+  return {data: videosData.savedVideos, refetch:fetchData, loading, error}
 };
 
 export default useRequest;

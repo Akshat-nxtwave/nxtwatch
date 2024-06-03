@@ -1,6 +1,13 @@
 
 import Store from "./Models/mobx";
+import VideosList from  './Models/videosList'
 
-export default Store;
+
+const StoreClasses = {
+    Store,
+    VideosList
+};
+
+export default StoreClasses;
 
 

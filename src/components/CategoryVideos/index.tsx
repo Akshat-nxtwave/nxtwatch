@@ -8,9 +8,9 @@ import ErrorContainer from "../ErrorContainer";
 import { CATEGORY_CONFIG, ConfigType } from "../../constants/constants";
 import { useLocation } from "react-router-dom";
 import  { ThemeContext } from "../../utils/ContextUtils";
+import { observer } from "mobx-react";
 
-
-const CategoryVideoes = () => {
+const CategoryVideoes = observer(() => {
   const { savedVideos, isDark } = useContext(ThemeContext);
   const location = useLocation();
   const [list, setList] = useState([]);
@@ -20,6 +20,7 @@ const CategoryVideoes = () => {
     url: CONFIGURATION?.apiUrl || '',
     method: "GET",
     isAuthRequired: true,
+    save:true,
   });
  
   useEffect(() => {
@@ -63,7 +64,7 @@ const CategoryVideoes = () => {
             descriptionText={"We are having some trouble to complete your request. Please Try Again."}
             buttonText={"Retry"}
           />: null}
-      {!loading && CONFIGURATION?.saved && list.length === 0 ?  <VideosContainer isDark={isDark} style={{height:'85vh'}}>
+      {!loading && CONFIGURATION?.saved && list?.length === 0 ?  <VideosContainer isDark={isDark} style={{height:'85vh'}}>
         <ErrorContainer
           mainImage="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
           mainHeading="No saved videos found"
@@ -107,6 +108,6 @@ const CategoryVideoes = () => {
       
     </Container>
   );
-};
+});
 
 export default CategoryVideoes;

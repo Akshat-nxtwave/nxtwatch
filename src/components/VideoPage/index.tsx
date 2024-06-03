@@ -7,6 +7,7 @@ import { ThemeContext } from "../../utils/ContextUtils";
 import { BiLike, BiListPlus } from "react-icons/bi";
 import { AiOutlineDislike } from "react-icons/ai";
 import { formatDistanceToNow } from "date-fns";
+
 import {
   Container,
   Title,
@@ -17,8 +18,9 @@ import {
   DescriptionText,
 } from "./styles";
 import Logo from "../Logo";
+import { observer } from "mobx-react";
 
-const VideoPage = () => {
+const VideoPage = observer(()=>{
   const [likedInfo, setLikedInfo] = useState(0);
   const val = useContext(ThemeContext);
   const { savedVideos, isDark } = val
@@ -34,6 +36,7 @@ const VideoPage = () => {
     url: `https://apis.ccbp.in/videos/${id}`,
     method: "GET",
     isAuthRequired: true,
+    save: true
   });
 
   const isSaved = savedVideos.find(
@@ -139,6 +142,6 @@ const VideoPage = () => {
       </Title>
     </Container>
   );
-};
+})
 
 export default VideoPage;

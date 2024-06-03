@@ -13,12 +13,13 @@ const VideoSection = () => {
     url: `https://apis.ccbp.in/videos/all?search=${searchInput}`,
     method: "GET",
     isAuthRequired: true,
+    save: true
   });
   const { isDark } = useContext(ThemeContext);
   
   const onChange = (value: string) => {
     setSearchInput(value)
-    if (value.length === 0) {
+    if (value?.length === 0) {
       refetch({});
     }
   }

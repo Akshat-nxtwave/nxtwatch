@@ -1,9 +1,9 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { ThemeContext } from '../../utils/ContextUtils';
-import Store from '../../store/mobx';
+import StoreClasses from '../../store/mobx';
 
-const store = new Store();
+const store = new StoreClasses.Store();
 const MobxStore = observer(({ children }: { children: React.ReactElement }) => {
     return (
       <>
