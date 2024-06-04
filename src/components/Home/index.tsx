@@ -9,10 +9,10 @@ import VideoSection from "../VideoSection";
 import { ThemeContext } from "../../utils/ContextUtils";
 
 const Home = () => {
-  const { isDark } = useContext(ThemeContext);
+  const val = useContext(ThemeContext);
   return (
      
-        <ContentSection isDark={isDark}>
+        <ContentSection isDark={val.store.isDark}>
           <CardContainer/>
           <VideoSection />
         </ContentSection>

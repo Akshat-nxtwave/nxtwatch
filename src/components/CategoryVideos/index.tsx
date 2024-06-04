@@ -11,9 +11,11 @@ import  { ThemeContext } from "../../utils/ContextUtils";
 import { observer } from "mobx-react";
 
 const CategoryVideoes = observer(() => {
-  const { savedVideos, isDark } = useContext(ThemeContext);
+  // const { savedVideos, isDark } = useContext(ThemeContext);
+  const val = useContext(ThemeContext);
+  console.log({...val.savedVideosStore.savedVideos}, 'ooooo')
   const location = useLocation();
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<any[]>([]);
   const CONFIGURATION: ConfigType = CATEGORY_CONFIG[location.pathname];
   const { data, loading, refetch, error, getVideosData =()=>{} } = useRequest({
     url: CONFIGURATION?.apiUrl || '',
@@ -22,10 +24,10 @@ const CategoryVideoes = observer(() => {
     save:true,
     type: location.pathname
   });
-  
+  console.log(list,'maaaa')
   useEffect(() => {
     if(CONFIGURATION?.saved) { 
-        setList(savedVideos);
+        setList(val.savedVideosStore.savedVideos.videos);
     }
     else {
       const l = getVideosData(location.pathname);
@@ -47,7 +49,7 @@ const CategoryVideoes = observer(() => {
 
 
   return (
-    <Container isDark={isDark}>
+    <Container isDark={val.store.isDark}>
       {loading ? (
         <ThreeDots
           visible={true}
@@ -61,12 +63,12 @@ const CategoryVideoes = observer(() => {
         />
       ) : null}
       {!loading && !!error ? <ErrorContainer
-            mainImage={`https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-${isDark ? 'dark' : 'light'}-theme-img.png`}
+            mainImage={`https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-${val.store.isDark  ? 'dark' : 'light'}-theme-img.png`}
             mainHeading={"OOPS! Something Went Wrong"}
             descriptionText={"We are having some trouble to complete your request. Please Try Again."}
             buttonText={"Retry"}
           />: null}
-      {!loading && CONFIGURATION?.saved && list?.length === 0 ?  <VideosContainer isDark={isDark} style={{height:'85vh'}}>
+      {!loading && CONFIGURATION?.saved && list?.length === 0 ?  <VideosContainer isDark={val.store.isDark } style={{height:'85vh'}}>
         <ErrorContainer
           mainImage="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
           mainHeading="No saved videos found"
@@ -77,19 +79,19 @@ const CategoryVideoes = observer(() => {
 
       {!loading && list?.length > 0 ? (
         <>
-          <LogoContainer isDark={isDark}>
+          <LogoContainer isDark={val.store.isDark}>
             <Logo
               style={{
                 padding: "24px",
                 margin: "0 20px",
                 borderRadius: "50%",
-                backgroundColor: isDark ?"var(--dark-charcoal)":"var(--light-blue-gray)",
+                backgroundColor: val.store.isDark ?"var(--dark-charcoal)":"var(--light-blue-gray)",
               }}
               component={CONFIGURATION?.logoComponent({ size: "26px", color: "red" })}
             />
             <Title>{CONFIGURATION?.title}</Title>
           </LogoContainer>
-          <VideosContainer isDark={isDark} doubleSection={CONFIGURATION?.doubleSection}>
+          <VideosContainer isDark={val.store.isDark } doubleSection={CONFIGURATION?.doubleSection}>
             {}
             {list?.map((item: any) => {
               return (

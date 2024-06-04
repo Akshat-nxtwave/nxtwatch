@@ -16,7 +16,7 @@ const VideoSection = () => {
     save: true,
     type: '/'
   });
-  const { isDark } = useContext(ThemeContext);
+  const val = useContext(ThemeContext);
   
   const onChange = (value: string) => {
     setSearchInput(value)
@@ -32,7 +32,7 @@ const VideoSection = () => {
   },[])
 
   return (
-    <OuterContainer isDark={isDark}>
+    <OuterContainer isDark={val.store.isDark}>
       <Search
         searchInput={searchInput}
         setSearchInput={onChange}
@@ -41,7 +41,7 @@ const VideoSection = () => {
       />
       <VideosBox>
         {!loading && !!error ? <ErrorContainer
-            mainImage={`https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-${isDark ? 'dark' : 'light'}-theme-img.png`}
+            mainImage={`https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-${val.store.isDark ? 'dark' : 'light'}-theme-img.png`}
             mainHeading={"OOPS! Something Went Wrong"}
             descriptionText={"We are having some trouble to complete your request. Please Try Again."}
             buttonText={"Retry"}

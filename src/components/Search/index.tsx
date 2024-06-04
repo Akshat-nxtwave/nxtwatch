@@ -11,12 +11,12 @@ type SearchProps = {
 }
 
 const Search = ({searchInput, setSearchInput, refetch, loading}:SearchProps) => {
-  const { isDark } = useContext(ThemeContext);
+  const val = useContext(ThemeContext);
 
   return (
     <Container>
-        <Input isDark={isDark} placeholder='Search'value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
-        <Button isDark={isDark} onClick={refetch} disabled={loading}>
+        <Input isDark={val.store.isDark} placeholder='Search'value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+        <Button isDark={val.store.isDark} onClick={refetch} disabled={loading}>
             <IoSearch size={14} />
         </Button>
     </Container>

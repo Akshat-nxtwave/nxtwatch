@@ -11,12 +11,12 @@ type ErrorContainerProps = {
   clickHandler?: React.MouseEventHandler | (() => void)
 }
 const ErrorContainer = ({mainImage, mainHeading, descriptionText="", buttonText, clickHandler=()=>{}}:ErrorContainerProps) => {
-  const { isDark } = useContext(ThemeContext);
+  const val = useContext(ThemeContext);
   return (
     <Container>
         {mainHeading?<Logo url={mainImage} width="auto" height="300px"/>:null}
-        <Heading isDark={isDark}>{mainHeading}</Heading>
-        <Description isDark={isDark}>{descriptionText}</Description>
+        <Heading isDark={val.store.isDark}>{mainHeading}</Heading>
+        <Description isDark={val.store.isDark}>{descriptionText}</Description>
         {buttonText?<Button onClick={clickHandler}>{buttonText}</Button>:null}
     </Container>
   )

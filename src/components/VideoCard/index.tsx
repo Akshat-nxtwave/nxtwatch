@@ -27,7 +27,7 @@ const VideoCard = ({
   doubleSection = false,
   displayEssentials = false,
 }:VideoCardProps) => {
-  const { isDark } = useContext(ThemeContext);
+  const val = useContext(ThemeContext);
   const cardDimension = DimensionsCard(displayEssentials, doubleSection);
   return (
     <Container to={`/videos/${item?.id}`} doubleSection={doubleSection} displayEssentials={displayEssentials}>
@@ -45,8 +45,8 @@ const VideoCard = ({
             url={item?.channel?.profile_image_url}
           />
         ) : null}
-        <Description isDark={isDark}>
-          <ChannelDescription isDark={isDark} doubleSection={doubleSection}>
+        <Description isDark={val.store.isDark}>
+          <ChannelDescription isDark={val.store.isDark} doubleSection={doubleSection}>
             {item?.title}
           </ChannelDescription>
           {displayEssentials ? null : (

@@ -15,7 +15,7 @@ import useRequest from "../../hooks/useRequest";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Login = () => {
-  const { isDark } = useContext(ThemeContext);
+  const val = useContext(ThemeContext);
   const navigate = useNavigate();
   const [ getParamsFunction ] = useSearchParams();
   const paramsPath = getParamsFunction.get("from");
@@ -48,25 +48,25 @@ const Login = () => {
 
   return (
     <Container>
-      <FormContainer isDark={isDark}>
+      <FormContainer isDark={val.store.isDark}>
         <Logo
           style={{ padding: "40px 10px 60px" }}
           width="200px"
           url={`https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-${
-            isDark ? "dark" : "light"
+            val.store.isDark ? "dark" : "light"
           }-theme-img.png`}
         ></Logo>
         <Title>USERNAME</Title>
         <InputField
           id="loginUsername"
-          isDark={isDark}
+          isDark={val.store.isDark}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         ></InputField>
         <Title>PASSWORD</Title>
         <InputField
           id="loginPassword"
-        isDark={isDark}
+        isDark={val.store.isDark}
           type={show ? "text" : "password"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}

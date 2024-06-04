@@ -3,12 +3,12 @@ import { Container } from './styles';
 import ErrorContainer from '../ErrorContainer';
 import { ThemeContext } from '../../utils/ContextUtils';
 const NoRouteFound = () => {
-  const {isDark} = useContext(ThemeContext)
+  const val = useContext(ThemeContext)
   return (
-    <Container isDark={isDark}>
+    <Container isDark={val.store.isDark}>
           <ErrorContainer
           mainImage={`https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-${
-            isDark ? "dark" : "light"
+            val.store.isDark ? "dark" : "light"
           }-theme-img.png`}
           mainHeading={"OOPS! Something Went Wrong"}
           descriptionText={

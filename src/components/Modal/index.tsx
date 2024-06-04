@@ -12,7 +12,7 @@ type ModalProps = {
 }
 const Modal = ({isOpen, onClose}:ModalProps) => {
     const navigate = useNavigate();
-    const { isDark } = useContext(ThemeContext);
+    const val = useContext(ThemeContext);
 
     const handleLogout = (e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
         onClose(e);
@@ -26,8 +26,8 @@ const Modal = ({isOpen, onClose}:ModalProps) => {
     if(!portalElement) throw new Error("Cannot find modal root element")
     return createPortal(
         <ModalContainer>
-           <ModalContent isDark={isDark}>
-               <Title isDark={isDark}> Are You Sure You Want To Logout? </Title>
+           <ModalContent isDark={val.store.isDark}>
+               <Title isDark={val.store.isDark}> Are You Sure You Want To Logout? </Title>
                <ButtonBox>
                 <Button onClick={onClose}>Cancel</Button>
                 <Button className='primary' role="presentation" onClick={handleLogout}>Confirm</Button>

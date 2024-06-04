@@ -24,7 +24,7 @@ export default class VideosListClass {
       setSavedVideos: action,
       saveVideos: action,
     });
-    autorun(() => console.log(this.savedVideos, "ooxoooo"));
+    autorun(() => console.log(this.savedVideos.total, "ooxoooo"));
   }
   
   hasContent(){
@@ -37,13 +37,16 @@ export default class VideosListClass {
   setSavedVideos(data: VideoType) {
     if(this.savedVideos.total === 0) {
         this.savedVideos.videos.push(data);
-        this.savedVideos.total++;
+        
     }
     else if (this.savedVideos.videos.find((item) => item.id === data.id)) {
       this.savedVideos.videos = this.savedVideos.videos.filter(
         (item: VideoType) => item.id !== data.id
       );
+      this.savedVideos.total--;
+      return;
     } 
     else this.savedVideos.videos.push(data);
+    this.savedVideos.total++;
   }
 }

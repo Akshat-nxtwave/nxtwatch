@@ -23,7 +23,7 @@ import { observer } from "mobx-react";
 const VideoPage = observer(()=>{
   const [likedInfo, setLikedInfo] = useState(0);
   const val = useContext(ThemeContext);
-  const { savedVideos, isDark } = val
+  console.log([...val.savedVideosStore.savedVideos.videos], 'yyyyy')
   const handleLikeStatus = (type: string) => {
     if (type === "like") {
       setLikedInfo((prev) => (prev === 1 ? 0 : 1));
@@ -38,8 +38,8 @@ const VideoPage = observer(()=>{
     isAuthRequired: true,
     save: true
   });
-  const isSaved = (savedVideos||[]).find(
-    (video:any) => video.id === data?.video_details?.id
+  const isSaved = (val.savedVideosStore.savedVideos.videos).find(
+    (video:any) => video?.id === data?.video_details?.id
   );
  
   useEffect(() => {
@@ -48,10 +48,10 @@ const VideoPage = observer(()=>{
 
   if (!loading && !!error) {
     return (
-      <Container isDark={isDark}>
+      <Container isDark={val.store.isDark}>
         <ErrorContainer
           mainImage={`https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-${
-            isDark ? "dark" : "light"
+            val.store.isDark ? "dark" : "light"
           }-theme-img.png`}
           mainHeading={"OOPS! Something Went Wrong"}
           descriptionText={
@@ -64,7 +64,7 @@ const VideoPage = observer(()=>{
   }
 
   return (
-    <Container isDark={isDark}>
+    <Container isDark={val.store.isDark}>
       <ReactPlayer
         config={{
           youtube: {
@@ -75,8 +75,8 @@ const VideoPage = observer(()=>{
         height="600px"
         url={data?.video_details?.video_url}
       />
-      <Title isDark={isDark}>{data?.video_details?.title}</Title>
-      <Features isDark={isDark}>
+      <Title isDark={val.store.isDark}>{data?.video_details?.title}</Title>
+      <Features isDark={val.store.isDark}>
         <Stats>
           {" "}
           {data?.video_details?.view_count} views &nbsp; • &nbsp;{" "}
@@ -110,7 +110,7 @@ const VideoPage = observer(()=>{
           </Stats>
 
           <Logo
-            onClick={() => val.setSavedVideos(data)}
+            onClick={() => val.savedVideosStore.setSavedVideos(data.video_details)}
             component={
               <BiListPlus
                 size="24"
@@ -130,13 +130,13 @@ const VideoPage = observer(()=>{
           url={data?.video_details?.channel?.profile_image_url}
         />
         <DescriptionText>
-          <Text isDark={isDark}>{data?.video_details?.channel?.name}</Text>
-          <Text className="light" isDark={isDark}>
+          <Text isDark={val.store.isDark}>{data?.video_details?.channel?.name}</Text>
+          <Text className="light" isDark={val.store.isDark}>
             {data?.video_details?.channel?.subscriber_count} Subscribers
           </Text>
         </DescriptionText>
       </Channel>
-      <Title isDark={isDark} style={{ marginLeft: "80px", width: "60%" }}>
+      <Title isDark={val.store.isDark} style={{ marginLeft: "80px", width: "60%" }}>
         {data?.video_details?.description}
       </Title>
     </Container>

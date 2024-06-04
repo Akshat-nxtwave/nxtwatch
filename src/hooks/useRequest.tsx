@@ -12,7 +12,6 @@ type useRequestProps = {
   
 }
 
-
 const videosDataMain = new StoreClasses.VideosList();
 const videosDataTrending = new StoreClasses.VideosList();
 const videosDataGaming = new StoreClasses.VideosList();

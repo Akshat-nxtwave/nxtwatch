@@ -14,12 +14,12 @@ import HomeRoutes from "../../routes/HomeRoutes";
 
 
 const App = observer(() => {
-  const { isDark } = useContext(ThemeContext);
+  const val = useContext(ThemeContext);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   
   return (
-    <div className={`App ${isDark ? "Dark" : ""}`}>
+    <div className={`App ${val.store.isDark ? "Dark" : ""}`}>
       <TitleBar show={location.pathname !== "/login"} setIsOpen={setIsOpen}/>
       <OuterContainer style={{alignItems: location.pathname === "/login" ? "center" : "flex-start"}}>
         {location.pathname === "/login" ? null : (

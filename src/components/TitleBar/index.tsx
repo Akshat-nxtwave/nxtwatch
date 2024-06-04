@@ -15,8 +15,8 @@ const TitleBar = observer(({setIsOpen, show = false}: TitleBarProps) => {
   
   const val = useContext(ThemeContext);
   return (
-    show &&
-    <Container isDark={val.isDark}>
+    show ?
+    <Container isDark={val.store.isDark}>
         <LogoLink to="/" style={{ padding: "20px 50px", flexGrow: '1' }}> 
         
          <Logo 
@@ -27,7 +27,7 @@ const TitleBar = observer(({setIsOpen, show = false}: TitleBarProps) => {
           />
           </LogoLink>
          <Logo
-          onClick={() => {val.setIsDark()}}
+          onClick={() => {val.store.setIsDark()}}
           style={{ padding: "20px" }}
           width="150px"
           component={val.isDark?<FaSun size="30px"/>:<FaMoon size="30px"/>}
@@ -37,8 +37,8 @@ const TitleBar = observer(({setIsOpen, show = false}: TitleBarProps) => {
           width="150px"
           component={<FaUserCircle size="30px"/>}
         />
-        <Button isDark={val.isDark} onClick={()=>setIsOpen(true)}>Logout</Button>
-    </Container>
+        <Button isDark={val.store.isDark} onClick={()=>setIsOpen(true)}>Logout</Button>
+    </Container>: <></>
   )
 })
 
