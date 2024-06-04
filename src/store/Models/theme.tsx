@@ -1,7 +1,7 @@
 
 import { makeObservable, observable, action } from "mobx";
 
-export default class Store {
+export default class ThemeClass {
     isDark: Boolean | null;
   
     constructor() {

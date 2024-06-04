@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GetJWT } from '../utils/GetJWT';
 import StoreClasses from "../store/mobx";
-import { da } from "date-fns/locale";
+import { fetchData } from "../utils/FetchUtils";
 
 type useRequestProps = {
   url: string
@@ -33,7 +33,8 @@ const useRequest = ({ url, method, isAuthRequired = false, save = false, type = 
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(null);
-  const fetchData = async (body : Object) => {
+  
+  const fetchDataResponse = async (body : Object) => {
     
     try {
       setError(null);
@@ -41,13 +42,14 @@ const useRequest = ({ url, method, isAuthRequired = false, save = false, type = 
       setLoading(true);
       const jwtToken = GetJWT();
       
-      const response = await fetch(url, { 
-        method, 
-        body: method === 'GET' ? undefined : JSON.stringify(body),
-        headers: isAuthRequired ? {
-          'Authorization': `Bearer ${jwtToken}`
-        } : undefined
-    })
+    //   const response = await fetch(url, { 
+    //     method, 
+    //     body: method === 'GET' ? undefined : JSON.stringify(body),
+    //     headers: isAuthRequired ? {
+    //       'Authorization': `Bearer ${jwtToken}`
+    //     } : undefined
+    // })
+    const response = await fetchData(url,method, body, isAuthRequired, jwtToken)
     .then((res) => res.json())
     .then(d=>{
       if(!save){
@@ -57,7 +59,7 @@ const useRequest = ({ url, method, isAuthRequired = false, save = false, type = 
       else {
         setVideosData(type, d)
       }
-    });
+    })
     setLoading(false);
 
     return response;
@@ -65,8 +67,8 @@ const useRequest = ({ url, method, isAuthRequired = false, save = false, type = 
       setError(err);
     }
   };
-  if(!save) return { data, refetch: fetchData, loading, error };
-  return { data: getVideosData(type), refetch:fetchData, loading, error, getVideosData }
+  if(!save) return { data, refetch: fetchDataResponse, loading, error };
+  return { data: getVideosData(type), refetch: fetchDataResponse, loading, error, getVideosData }
 };
 
 export default useRequest;

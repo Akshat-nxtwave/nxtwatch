@@ -7,7 +7,7 @@ type VideosList = {
   total: number;
 };
 
-export default class Store {
+export default class VideosListClass {
   
   savedVideos: VideosList = {videos:[], total:0};
   

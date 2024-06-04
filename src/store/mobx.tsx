@@ -1,10 +1,10 @@
 
-import Store from "./Models/mobx";
+import ThemeClass from "./Models/theme";
 import VideosList from  './Models/videosList'
 
 
 const StoreClasses = {
-    Store,
+    ThemeClass,
     VideosList
 };
 

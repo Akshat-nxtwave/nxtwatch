@@ -58,12 +58,14 @@ const Login = () => {
         ></Logo>
         <Title>USERNAME</Title>
         <InputField
+          id="loginUsername"
           isDark={isDark}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         ></InputField>
         <Title>PASSWORD</Title>
         <InputField
+          id="loginPassword"
         isDark={isDark}
           type={show ? "text" : "password"}
           value={password}
@@ -72,14 +74,14 @@ const Login = () => {
 
         <Checkbox>
           <input
-            id="show-password"
+            id="showPassword"
             type="checkbox"
             checked={show}
             onChange={() => setShow((prev) => !prev)}
           ></input>
           <label htmlFor="show-password">Show Password</label>
         </Checkbox>
-        <Button disabled={loading} onClick={onSubmit}>
+        <Button id="loginSubmit" disabled={loading} onClick={onSubmit}>
           {loading ? (
             <TailSpin
               visible={true}
