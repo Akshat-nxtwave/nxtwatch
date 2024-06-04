@@ -74,4 +74,4 @@ export const LOGO_MAPPING = [
 
 export const BANNER_IMAGE_URL = "https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png"
 
-
+export type  ApiStatusTypes = "UNFETCHED" | "PENDING" | "SUCCESS" | "FAILED"

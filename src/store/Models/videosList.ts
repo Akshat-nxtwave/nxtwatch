@@ -1,7 +1,12 @@
-import { makeObservable, observable, action, autorun } from "mobx";
+import { makeObservable, observable, action } from "mobx";
 import { VideoType } from "./video";
 
-
+export type VideosListType = {
+    savedVideos: VideosList;
+    hasContext: () => boolean;
+    saveVideos: (data: VideosList) => void;
+    setSavedVideos: (data: VideoType) => void;
+}
 type VideosList = {
   videos: VideoType[];
   total: number;
@@ -24,7 +29,7 @@ export default class VideosListClass {
       setSavedVideos: action,
       saveVideos: action,
     });
-    autorun(() => console.log(this.savedVideos.total, "ooxoooo"));
+
   }
   
   hasContent(){

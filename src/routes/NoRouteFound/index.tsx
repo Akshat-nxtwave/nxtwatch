@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { Container } from './styles';
-import ErrorContainer from '../ErrorContainer';
-import { ThemeContext } from '../../utils/ContextUtils';
+import ErrorContainer from '../../components/ErrorContainer';
+import { StoreContext } from '../../utils/ContextUtils';
 const NoRouteFound = () => {
-  const val = useContext(ThemeContext)
+  const val = useContext(StoreContext)
   return (
     <Container isDark={val.store.isDark}>
           <ErrorContainer

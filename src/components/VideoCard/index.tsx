@@ -11,7 +11,7 @@ import {
 import Logo from "../Logo";
 import { DimensionsCard } from "../../utils/DimensionsCard";
 import { formatDistanceToNow } from "date-fns";
-import { ThemeContext } from "../../utils/ContextUtils";
+import { StoreContext } from "../../utils/ContextUtils";
 type VideoCardProps = {
   item: any, 
   displayEssentials?: boolean,
@@ -27,7 +27,7 @@ const VideoCard = ({
   doubleSection = false,
   displayEssentials = false,
 }:VideoCardProps) => {
-  const val = useContext(ThemeContext);
+  const val = useContext(StoreContext);
   const cardDimension = DimensionsCard(displayEssentials, doubleSection);
   return (
     <Container to={`/videos/${item?.id}`} doubleSection={doubleSection} displayEssentials={displayEssentials}>

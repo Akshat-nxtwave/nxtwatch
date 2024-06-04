@@ -1,13 +1,13 @@
 import { lazy } from "react";
 
 import { Routes, Route } from "react-router-dom";
-import Login from "../../components/Login";
-import Home from "../../components/Home";
-import AuthHandler from "../../components/AuthHandler";
-import TrafficLight from '../../components/TrafficLight';
-const CategoryVideos = lazy(() => import('../../components/CategoryVideos'));
-const VideoPage = lazy(() => import('../../components/VideoPage'));
-const NoRouteFound = lazy(()=>import('../../components/NoRouteFound'));
+import Login from "../Login";
+import Home from "../Home";
+import AuthHandler from "../AuthHandler";
+import TrafficLight from '../TrafficLight';
+const CategoryVideos = lazy(() => import('../CategoryVideos'));
+const VideoPage = lazy(() => import('../VideoPage'));
+const NoRouteFound = lazy(()=>import('../NoRouteFound'));
 
 const HomeRoutes = ()=>{
 

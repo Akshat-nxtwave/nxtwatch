@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Container, Input, Button } from './styles';
 import { IoSearch } from "react-icons/io5";
-import { ThemeContext } from "../../utils/ContextUtils";
+import { StoreContext } from "../../utils/ContextUtils";
 
 type SearchProps = {
   searchInput:string,
@@ -11,7 +11,7 @@ type SearchProps = {
 }
 
 const Search = ({searchInput, setSearchInput, refetch, loading}:SearchProps) => {
-  const val = useContext(ThemeContext);
+  const val = useContext(StoreContext);
 
   return (
     <Container>

@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import ReactPlayer from "react-player/lazy";
 import { useParams } from "react-router-dom";
 import useRequest from "../../hooks/useRequest";
-import ErrorContainer from "../ErrorContainer";
-import { ThemeContext } from "../../utils/ContextUtils";
+import ErrorContainer from "../../components/ErrorContainer";
+import { StoreContext } from "../../utils/ContextUtils";
 import { BiLike, BiListPlus } from "react-icons/bi";
 import { AiOutlineDislike } from "react-icons/ai";
 import { formatDistanceToNow } from "date-fns";
@@ -17,12 +17,12 @@ import {
   Text,
   DescriptionText,
 } from "./styles";
-import Logo from "../Logo";
+import Logo from "../../components/Logo";
 import { observer } from "mobx-react";
 
 const VideoPage = observer(()=>{
   const [likedInfo, setLikedInfo] = useState(0);
-  const val = useContext(ThemeContext);
+  const val = useContext(StoreContext);
   console.log([...val.savedVideosStore.savedVideos.videos], 'yyyyy')
   const handleLikeStatus = (type: string) => {
     if (type === "like") {

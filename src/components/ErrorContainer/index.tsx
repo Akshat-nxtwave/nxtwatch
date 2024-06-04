@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Heading, Description, Button } from './styles';
 import Logo from '../Logo';
 import { useContext } from 'react';
-import { ThemeContext } from '../../utils/ContextUtils';
+import { StoreContext } from '../../utils/ContextUtils';
 type ErrorContainerProps = {
   mainImage: string | null | undefined,
   mainHeading: string,
@@ -11,7 +11,7 @@ type ErrorContainerProps = {
   clickHandler?: React.MouseEventHandler | (() => void)
 }
 const ErrorContainer = ({mainImage, mainHeading, descriptionText="", buttonText, clickHandler=()=>{}}:ErrorContainerProps) => {
-  const val = useContext(ThemeContext);
+  const val = useContext(StoreContext);
   return (
     <Container>
         {mainHeading?<Logo url={mainImage} width="auto" height="300px"/>:null}

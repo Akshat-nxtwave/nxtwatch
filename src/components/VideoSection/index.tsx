@@ -5,7 +5,7 @@ import Search from "../Search";
 import VideoCard from "../VideoCard";
 import Placeholder from "../Placeholder";
 import ErrorContainer from "../ErrorContainer";
-import { ThemeContext } from "../../utils/ContextUtils";
+import { StoreContext } from "../../utils/ContextUtils";
 
 const VideoSection = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -16,7 +16,7 @@ const VideoSection = () => {
     save: true,
     type: '/'
   });
-  const val = useContext(ThemeContext);
+  const val = useContext(StoreContext);
   
   const onChange = (value: string) => {
     setSearchInput(value)

@@ -4,12 +4,12 @@ import {
   ContentSection,
 
 } from "./styles";
-import CardContainer from "../CardContainer";
-import VideoSection from "../VideoSection";
-import { ThemeContext } from "../../utils/ContextUtils";
+import CardContainer from "../../components/CardContainer";
+import VideoSection from "../../components/VideoSection";
+import { StoreContext } from "../../utils/ContextUtils";
 
 const Home = () => {
-  const val = useContext(ThemeContext);
+  const val = useContext(StoreContext);
   return (
      
         <ContentSection isDark={val.store.isDark}>

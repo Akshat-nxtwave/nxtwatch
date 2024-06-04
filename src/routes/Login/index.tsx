@@ -9,13 +9,13 @@ import {
   ErrorMsg,
 } from "./styles";
 import { TailSpin } from "react-loader-spinner";
-import Logo from "../Logo";
-import { ThemeContext } from "../../utils/ContextUtils";
+import Logo from "../../components/Logo";
+import { StoreContext } from "../../utils/ContextUtils";
 import useRequest from "../../hooks/useRequest";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Login = () => {
-  const val = useContext(ThemeContext);
+  const val = useContext(StoreContext);
   const navigate = useNavigate();
   const [ getParamsFunction ] = useSearchParams();
   const paramsPath = getParamsFunction.get("from");

@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router'
 import { ModalContainer, ModalContent, Title, ButtonBox, Button } from './styles';
 import { useContext } from 'react';
-import { ThemeContext } from '../../utils/ContextUtils';
+import { StoreContext } from '../../utils/ContextUtils';
 
 type ModalProps = {
     isOpen: boolean,
@@ -12,7 +12,7 @@ type ModalProps = {
 }
 const Modal = ({isOpen, onClose}:ModalProps) => {
     const navigate = useNavigate();
-    const val = useContext(ThemeContext);
+    const val = useContext(StoreContext);
 
     const handleLogout = (e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
         onClose(e);

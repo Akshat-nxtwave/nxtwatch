@@ -13,7 +13,7 @@ if (!rootElement) throw new Error("Root element missing");
 
 const root = ReactDOM.createRoot(rootElement);
 
-const AppWrapper = observer(() => {
+export const AppWrapper = observer(() => {
   return (
     <BrowserRouter>
       <StoreWrapper>

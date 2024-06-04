@@ -1,18 +1,18 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Container, Title, LogoContainer, VideosContainer } from "./styles";
-import Logo from "../Logo";
-import VideoCard from "../VideoCard";
+import Logo from "../../components/Logo";
+import VideoCard from "../../components/VideoCard";
 import useRequest from "../../hooks/useRequest";
 import { ThreeDots } from "react-loader-spinner";
-import ErrorContainer from "../ErrorContainer";
+import ErrorContainer from "../../components/ErrorContainer";
 import { CATEGORY_CONFIG, ConfigType } from "../../constants/constants";
 import { useLocation } from "react-router-dom";
-import  { ThemeContext } from "../../utils/ContextUtils";
+import  { StoreContext } from "../../utils/ContextUtils";
 import { observer } from "mobx-react";
 
 const CategoryVideoes = observer(() => {
-  // const { savedVideos, isDark } = useContext(ThemeContext);
-  const val = useContext(ThemeContext);
+  // const { savedVideos, isDark } = useContext(StoreContext);
+  const val = useContext(StoreContext);
   console.log({...val.savedVideosStore.savedVideos}, 'ooooo')
   const location = useLocation();
   const [list, setList] = useState<any[]>([]);

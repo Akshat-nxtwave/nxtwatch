@@ -3,11 +3,11 @@ import { TABS_CONSTANTS } from "../../constants/constants";
 import { Container, InnerContainer, Text } from "./styles";
 import { useLocation } from "react-router-dom";
 import Logo from "../Logo";
-import { ThemeContext } from "../../utils/ContextUtils";
+import { StoreContext } from "../../utils/ContextUtils";
 
 const TabsList = () => {
     const location = useLocation();
-    const val = useContext(ThemeContext);
+    const val = useContext(StoreContext);
   return (
     <Container>
       {TABS_CONSTANTS.map((tab) => (
