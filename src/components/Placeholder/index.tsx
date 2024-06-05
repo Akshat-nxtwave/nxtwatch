@@ -6,7 +6,7 @@ type Props = {
   rounding?: string;
 };
 const Placeholder = (props: Props) => {
-  return <Container {...props} />;
+  return <Container data-testid="placeholder-div" {...props} />;
 };
 
 export default Placeholder;
