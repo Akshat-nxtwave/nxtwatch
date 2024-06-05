@@ -1,13 +1,9 @@
-
 import ThemeClass from "./Models/theme";
-import VideosList from  './Models/videosList'
-
+import VideosList from "./Models/videosList";
 
 const StoreClasses = {
-    ThemeClass,
-    VideosList
+  ThemeClass,
+  VideosList,
 };
 
 export default StoreClasses;
-
-

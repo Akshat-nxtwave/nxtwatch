@@ -20,10 +20,10 @@ import {
 import Logo from "../../components/Logo";
 import { observer } from "mobx-react";
 
-const VideoPage = observer(()=>{
+const VideoPage = observer(() => {
   const [likedInfo, setLikedInfo] = useState(0);
   const val = useContext(StoreContext);
-  console.log([...val.savedVideosStore.savedVideos.videos], 'yyyyy')
+  console.log([...val.savedVideosStore.savedVideos.videos], "yyyyy");
   const handleLikeStatus = (type: string) => {
     if (type === "like") {
       setLikedInfo((prev) => (prev === 1 ? 0 : 1));
@@ -36,12 +36,12 @@ const VideoPage = observer(()=>{
     url: `https://apis.ccbp.in/videos/${id}`,
     method: "GET",
     isAuthRequired: true,
-    save: true
+    save: true,
   });
-  const isSaved = (val.savedVideosStore.savedVideos.videos).find(
-    (video:any) => video?.id === data?.video_details?.id
+  const isSaved = val.savedVideosStore.savedVideos.videos.find(
+    (video: any) => video?.id === data?.video_details?.id
   );
- 
+
   useEffect(() => {
     refetch({});
   }, [id]);
@@ -58,7 +58,7 @@ const VideoPage = observer(()=>{
             "We are having some trouble to complete your request. Please Try Again."
           }
           buttonText={"Retry"}
-        /> 
+        />
       </Container>
     );
   }
@@ -110,7 +110,9 @@ const VideoPage = observer(()=>{
           </Stats>
 
           <Logo
-            onClick={() => val.savedVideosStore.setSavedVideos(data.video_details)}
+            onClick={() =>
+              val.savedVideosStore.setSavedVideos(data.video_details)
+            }
             component={
               <BiListPlus
                 size="24"
@@ -130,17 +132,22 @@ const VideoPage = observer(()=>{
           url={data?.video_details?.channel?.profile_image_url}
         />
         <DescriptionText>
-          <Text isDark={val.store.isDark}>{data?.video_details?.channel?.name}</Text>
+          <Text isDark={val.store.isDark}>
+            {data?.video_details?.channel?.name}
+          </Text>
           <Text className="light" isDark={val.store.isDark}>
             {data?.video_details?.channel?.subscriber_count} Subscribers
           </Text>
         </DescriptionText>
       </Channel>
-      <Title isDark={val.store.isDark} style={{ marginLeft: "80px", width: "60%" }}>
+      <Title
+        isDark={val.store.isDark}
+        style={{ marginLeft: "80px", width: "60%" }}
+      >
         {data?.video_details?.description}
       </Title>
     </Container>
   );
-})
+});
 
 export default VideoPage;

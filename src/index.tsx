@@ -17,17 +17,13 @@ export const AppWrapper = observer(() => {
   return (
     <BrowserRouter>
       <StoreWrapper>
-        <App />
+        <App data-testid="roott" />
       </StoreWrapper>
     </BrowserRouter>
   );
 });
 
-root.render(
-  <React.StrictMode>
-    <AppWrapper />
-  </React.StrictMode>
-);
+root.render(<AppWrapper />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

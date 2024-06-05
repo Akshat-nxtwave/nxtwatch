@@ -13,24 +13,27 @@ import { DimensionsCard } from "../../utils/DimensionsCard";
 import { formatDistanceToNow } from "date-fns";
 import { StoreContext } from "../../utils/ContextUtils";
 type VideoCardProps = {
-  item: any, 
-  displayEssentials?: boolean,
-  doubleSection?:boolean
-
-}
-// key={item?.id} 
-// item={item} 
-// displayEssentials={CONFIGURATION?.displayEssentials} 
-// doubleSection={CONFIGURATION?.doubleSection} 
+  item: any;
+  displayEssentials?: boolean;
+  doubleSection?: boolean;
+};
+// key={item?.id}
+// item={item}
+// displayEssentials={CONFIGURATION?.displayEssentials}
+// doubleSection={CONFIGURATION?.doubleSection}
 const VideoCard = ({
   item,
   doubleSection = false,
   displayEssentials = false,
-}:VideoCardProps) => {
+}: VideoCardProps) => {
   const val = useContext(StoreContext);
   const cardDimension = DimensionsCard(displayEssentials, doubleSection);
   return (
-    <Container to={`/videos/${item?.id}`} doubleSection={doubleSection} displayEssentials={displayEssentials}>
+    <Container
+      to={`/videos/${item?.id}`}
+      doubleSection={doubleSection}
+      displayEssentials={displayEssentials}
+    >
       <ThumbNail
         width={cardDimension.width}
         height={cardDimension.height}
@@ -46,20 +49,26 @@ const VideoCard = ({
           />
         ) : null}
         <Description isDark={val.store.isDark}>
-          <ChannelDescription isDark={val.store.isDark} doubleSection={doubleSection}>
+          <ChannelDescription
+            isDark={val.store.isDark}
+            doubleSection={doubleSection}
+          >
             {item?.title}
           </ChannelDescription>
           {displayEssentials ? null : (
             <ChannelName>{item?.channel?.name}</ChannelName>
           )}
-          {displayEssentials ? <ChannelStats>{item?.view_count} Watching Worldwide</ChannelStats> : <ChannelStats>
-            {item?.view_count} views &nbsp; • &nbsp;{" "}
-            {item?.published_at
-              ? formatDistanceToNow(item?.published_at)
-              : "NA"}{" "}
-            ago
-          </ChannelStats>}
-          
+          {displayEssentials ? (
+            <ChannelStats>{item?.view_count} Watching Worldwide</ChannelStats>
+          ) : (
+            <ChannelStats>
+              {item?.view_count} views &nbsp; • &nbsp;{" "}
+              {item?.published_at
+                ? formatDistanceToNow(item?.published_at)
+                : "NA"}{" "}
+              ago
+            </ChannelStats>
+          )}
         </Description>
       </Details>
     </Container>
