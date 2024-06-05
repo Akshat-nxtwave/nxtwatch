@@ -12,7 +12,7 @@ type TitleBarProps = {
 const TitleBar = observer(({ setIsOpen, show = false }: TitleBarProps) => {
   const val = useContext(StoreContext);
   return show ? (
-    <Container isDark={val?.store.isDark}>
+    <Container isDark={val.store.isDark}>
       <LogoLink to="/" style={{ padding: "20px 50px", flexGrow: "1" }}>
         <Logo
           width="150px"
@@ -23,7 +23,7 @@ const TitleBar = observer(({ setIsOpen, show = false }: TitleBarProps) => {
       </LogoLink>
       <Logo
         onClick={() => {
-          val?.store.setIsDark();
+          val.store.setIsDark();
         }}
         style={{ padding: "20px" }}
         width="150px"
