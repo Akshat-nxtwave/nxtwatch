@@ -1,15 +1,16 @@
 import { createContext } from "react";
 // import useLocalStorage from "../hooks/useLocalStore";
-import { ThemeClassType } from "../store/Models/theme";
-import { VideosListType } from "../store/Models/videosList";
-export type StoreContextType =
-  | {
-      store: ThemeClassType;
-      savedVideosStore: VideosListType;
-    }
-  | any;
+import ThemeClass from "../store/Models/theme";
+import VideosListClass from "../store/Models/videosList";
+export type StoreContextType = {
+  store: ThemeClass;
+  savedVideosStore: VideosListClass;
+};
 
-export const StoreContext = createContext<StoreContextType>(null);
+export const StoreContext = createContext<StoreContextType>({
+  store: new ThemeClass(),
+  savedVideosStore: new VideosListClass(),
+});
 
 // const ContextWrapper = ({children})=>{
 //     const [savedVideos, setSavedVideos] = useLocalStorage('savedVideos', []);

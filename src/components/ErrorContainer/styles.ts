@@ -13,14 +13,14 @@ export const Heading = styled.div`
   font-size: 24px;
   padding: 24px;
   font-weight: 500;
-  color: ${({ isDark }: { isDark: boolean }) =>
+  color: ${({ isDark }: { isDark: Boolean | null }) =>
     isDark ? "var(--secondary-dark-color)" : "var(--secondary-color)"};
 `;
 
 export const Description = styled.div`
   font-size: 18px;
   font-weight: 400;
-  color: ${({ isDark }: { isDark: boolean }) =>
+  color: ${({ isDark }: { isDark: Boolean | null }) =>
     isDark ? "var(--secondary-dark-color)" : "var(--steel-gray)"};
   padding: 0 0 20px;
 `;

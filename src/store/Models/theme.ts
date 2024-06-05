@@ -23,7 +23,7 @@ export default class ThemeClass {
     autorun(() => console.log(this.apiStatus, "gggggggggggggppppp"));
   }
 
-  setIsDark(value: any) {
+  setIsDark(value?: any) {
     this.isDark = !this.isDark;
   }
 

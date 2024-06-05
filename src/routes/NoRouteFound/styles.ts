@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 type Props = {
-  isDark: boolean;
+  isDark: Boolean | null;
 };
 export const Container = styled.div`
   display: flex;

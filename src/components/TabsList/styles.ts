@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 type Props = {
-  isDark: boolean;
+  isDark: Boolean | null;
 };
 export const Container = styled.div``;
 

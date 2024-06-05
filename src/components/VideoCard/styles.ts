@@ -5,7 +5,7 @@ import Logo from "../Logo";
 type StyledProps = {
   doubleSection?: boolean;
   displayEssentials?: boolean;
-  isDark?: boolean;
+  isDark?: Boolean | null;
 };
 
 export const Container = styled(Link)`

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 type StyledProps = {
-  isDark?: boolean;
+  isDark?: Boolean | null;
   doubleSection?: any;
 };
 export const Container = styled.div`

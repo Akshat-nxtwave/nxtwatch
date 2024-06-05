@@ -15,7 +15,7 @@ const App = observer(() => {
   const val = useContext(StoreContext);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  console.log("iiiihhhhhhh");
+
   return (
     <div className={`App ${val.store.isDark ? "Dark" : ""}`}>
       <TitleBar

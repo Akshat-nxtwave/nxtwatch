@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 type StyledProps = {
-  isDark: boolean;
+  isDark: Boolean | null;
 };
 export const ModalContainer = styled.div`
   position: fixed;

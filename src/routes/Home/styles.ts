@@ -18,7 +18,7 @@ export const ContentSection = styled.div`
   display: flex;
   width: -webkit-fill-available;
   flex-direction: column;
-  background-color: ${({ isDark }: { isDark: boolean }) =>
+  background-color: ${({ isDark }: { isDark: Boolean | null }) =>
     isDark ? "var(--primary-dark-bg)" : "var(--primary-bg)"};
   // overflow:scroll;
   // position:relative;
