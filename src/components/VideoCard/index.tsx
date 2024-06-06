@@ -27,10 +27,11 @@ const VideoCard = ({
   displayEssentials = false,
 }: VideoCardProps) => {
   const val = useContext(StoreContext);
+  console.count(item.id);
   const cardDimension = DimensionsCard(displayEssentials, doubleSection);
   return (
     <Container
-      data-testid={item.id}
+      data-testid="test-video-page"
       to={`/videos/${item?.id}`}
       doubleSection={doubleSection}
       displayEssentials={displayEssentials}

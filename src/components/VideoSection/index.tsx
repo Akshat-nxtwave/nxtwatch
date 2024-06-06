@@ -8,7 +8,6 @@ import ErrorContainer from "../ErrorContainer";
 import { StoreContext } from "../../utils/ContextUtils";
 
 const VideoSection = () => {
-  console.log("vvvvvvvhhhhh");
   const [searchInput, setSearchInput] = useState("");
   const {
     data,
@@ -64,7 +63,7 @@ const VideoSection = () => {
           : null}
 
         {!loading && data?.total > 0
-          ? data?.videos?.map((item: any) => (
+          ? data.videos.map((item: any) => (
               <VideoCard key={item.id} item={item} />
             ))
           : null}
