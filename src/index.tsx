@@ -16,7 +16,7 @@ export const AppWrapper = observer(() => {
   return (
     <BrowserRouter>
       <StoreWrapper>
-        <App data-testid="roott" />
+        <App />
       </StoreWrapper>
     </BrowserRouter>
   );

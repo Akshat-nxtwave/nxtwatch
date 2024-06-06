@@ -18,7 +18,10 @@ const App = observer(() => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const jwtToken = GetJWT();
   return (
-    <div className={`App ${val.store.isDark ? "Dark" : ""}`}>
+    <div
+      data-testid="roott"
+      className={`App ${val.store.isDark ? "Dark" : ""}`}
+    >
       <TitleBar
         data-testid="title-app"
         show={location.pathname !== "/login" && !!jwtToken}

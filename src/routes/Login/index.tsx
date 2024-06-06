@@ -12,7 +12,8 @@ import { TailSpin } from "react-loader-spinner";
 import Logo from "../../components/Logo";
 import { StoreContext } from "../../utils/ContextUtils";
 import useRequest from "../../hooks/useRequest";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Navigate } from "react-router-dom";
+import { onSubmit } from "../../utils/SubmitUtils";
 
 const Login = () => {
   const val = useContext(StoreContext);
@@ -29,9 +30,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const [show, setShow] = useState(false);
-  const onSubmit = async () => {
-    await refetch({ username, password });
-  };
 
   useEffect(() => {
     if (document.cookie.includes("jwtToken")) {
@@ -46,6 +44,9 @@ const Login = () => {
     }
   }, [data, error]);
 
+  if (document.cookie.includes("jwtToken"))
+    return <Navigate to={paramsPath || "/"} />;
+
   return (
     <Container>
       <FormContainer isDark={val.store.isDark}>
@@ -58,6 +59,7 @@ const Login = () => {
         ></Logo>
         <Title>USERNAME</Title>
         <InputField
+          data-testid="login-username"
           id="loginUsername"
           isDark={val.store.isDark}
           value={username}
@@ -66,6 +68,7 @@ const Login = () => {
         <Title>PASSWORD</Title>
         <InputField
           id="loginPassword"
+          data-testid="login-password"
           isDark={val.store.isDark}
           type={show ? "text" : "password"}
           value={password}
@@ -74,14 +77,18 @@ const Login = () => {
 
         <Checkbox>
           <input
-            id="showPassword"
+            id="show-password"
             type="checkbox"
             checked={show}
             onChange={() => setShow((prev) => !prev)}
           ></input>
           <label htmlFor="show-password">Show Password</label>
         </Checkbox>
-        <Button id="loginSubmit" disabled={loading} onClick={onSubmit}>
+        <Button
+          data-testid="loginSubmit"
+          disabled={loading}
+          onClick={() => onSubmit(refetch, username, password)}
+        >
           {loading ? (
             <TailSpin
               visible={true}
@@ -98,7 +105,9 @@ const Login = () => {
           )}
         </Button>
         {error ? (
-          <ErrorMsg>*Username and Password do not match</ErrorMsg>
+          <ErrorMsg data-testid="error-login">
+            *Username and Password do not match
+          </ErrorMsg>
         ) : null}
       </FormContainer>
     </Container>

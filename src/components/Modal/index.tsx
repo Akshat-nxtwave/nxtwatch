@@ -28,6 +28,7 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
   if (!isOpen) return null;
   const portalElement = document.getElementById("modal");
   if (!portalElement) throw new Error("Cannot find modal root element");
+  if (!isOpen) return null;
   return createPortal(
     <ModalContainer>
       <ModalContent isDark={val.store.isDark}>
@@ -36,11 +37,14 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
           Are You Sure You Want To Logout?{" "}
         </Title>
         <ButtonBox>
-          <Button onClick={onClose}>Cancel</Button>
+          <Button data-testid="modal-cancel" onClick={onClose}>
+            Cancel
+          </Button>
           <Button
             className="primary"
             role="presentation"
             onClick={handleLogout}
+            data-testid="modal-confirm"
           >
             Confirm
           </Button>

@@ -28,7 +28,11 @@ const TitleBar = observer(({ setIsOpen, show = false }: TitleBarProps) => {
         style={{ padding: "20px" }}
         width="150px"
         component={
-          val?.store.isDark ? <FaSun size="30px" /> : <FaMoon size="30px" />
+          val?.store.isDark ? (
+            <FaSun data-testid="theme-sun" size="30px" />
+          ) : (
+            <FaMoon data-testid="theme-moon" size="30px" />
+          )
         }
       />
       <Logo

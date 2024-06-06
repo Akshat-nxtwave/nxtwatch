@@ -30,6 +30,7 @@ const VideoCard = ({
   const cardDimension = DimensionsCard(displayEssentials, doubleSection);
   return (
     <Container
+      data-testid={item.id}
       to={`/videos/${item?.id}`}
       doubleSection={doubleSection}
       displayEssentials={displayEssentials}

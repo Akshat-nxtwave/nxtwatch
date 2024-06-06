@@ -13,9 +13,9 @@ type useRequestProps = {
   type?: string;
 };
 
-const videosDataMain = new StoreClasses.VideosList();
-const videosDataTrending = new StoreClasses.VideosList();
-const videosDataGaming = new StoreClasses.VideosList();
+export const videosDataMain = new StoreClasses.VideosList();
+export const videosDataTrending = new StoreClasses.VideosList();
+export const videosDataGaming = new StoreClasses.VideosList();
 
 const getVideosData = (type: string): any => {
   if (type === "/trending") return videosDataTrending.savedVideos;

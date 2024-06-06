@@ -64,7 +64,7 @@ const VideoPage = observer(() => {
   }
 
   return (
-    <Container isDark={val.store.isDark}>
+    <Container data-testid="video-page" isDark={val.store.isDark}>
       <ReactPlayer
         config={{
           youtube: {

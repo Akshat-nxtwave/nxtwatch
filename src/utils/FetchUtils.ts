@@ -1,11 +1,11 @@
-export const fetchData = (
+export const fetchData = async (
   url: string,
   method: string,
   body: object,
   isAuthRequired: Boolean,
   jwtToken: string
 ) =>
-  fetch(url, {
+  await fetch(url, {
     method,
     body: method === "GET" ? undefined : JSON.stringify(body),
     headers: isAuthRequired
