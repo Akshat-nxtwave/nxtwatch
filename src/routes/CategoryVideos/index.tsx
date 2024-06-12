@@ -103,11 +103,12 @@ const CategoryVideoes = observer(() => {
                 color: "red",
               })}
             />
-            <Title>{CONFIGURATION?.title}</Title>
+            <Title className="test-title-header">{CONFIGURATION?.title}</Title>
           </LogoContainer>
           <VideosContainer
             isDark={val.store.isDark}
             doubleSection={CONFIGURATION?.doubleSection}
+            id="main-videos-section"
           >
             {}
             {list?.map((item: any) => {

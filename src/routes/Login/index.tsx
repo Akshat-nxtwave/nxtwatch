@@ -86,6 +86,7 @@ const Login = () => {
         </Checkbox>
         <Button
           data-testid="loginSubmit"
+          id="loginSubmit"
           disabled={loading}
           onClick={() => onSubmit(refetch, username, password)}
         >

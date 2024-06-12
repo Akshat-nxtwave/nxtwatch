@@ -120,7 +120,10 @@ const VideoPage = observer(() => {
               />
             }
           />
-          <Stats style={{ color: isSaved ? "var(--bright-red)" : "" }}>
+          <Stats
+            id="video-page-save"
+            style={{ color: isSaved ? "var(--bright-red)" : "" }}
+          >
             Save{isSaved ? "d" : ""}
           </Stats>
         </Stats>

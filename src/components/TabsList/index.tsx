@@ -25,7 +25,7 @@ const TabsList = () => {
             size="30px"
             component={tab.logo({ size: "22px" })}
           />
-          <Text>{tab.displayName}</Text>
+          <Text className="tabs-list">{tab.displayName}</Text>
         </InnerContainer>
       ))}
     </Container>

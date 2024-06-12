@@ -29,6 +29,7 @@ const VideoCard = ({
   const val = useContext(StoreContext);
   console.count(item.id);
   const cardDimension = DimensionsCard(displayEssentials, doubleSection);
+
   return (
     <Container
       data-testid="test-video-page"

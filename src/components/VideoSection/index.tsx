@@ -43,7 +43,12 @@ const VideoSection = () => {
         loading={loading}
         refetch={refetch}
       />
-      <VideosBox>
+      <VideosBox id="video-home-section">
+        {!loading && data?.total > 0
+          ? data.videos.map((item: any) => (
+              <VideoCard key={item.id} item={item} />
+            ))
+          : null}
         {!loading && !!error ? (
           <ErrorContainer
             mainImage={`https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-${
@@ -59,12 +64,6 @@ const VideoSection = () => {
         {loading
           ? [...Array(6)].map((_, index) => (
               <Placeholder height="250px" width="28%" key={index} />
-            ))
-          : null}
-
-        {!loading && data?.total > 0
-          ? data.videos.map((item: any) => (
-              <VideoCard key={item.id} item={item} />
             ))
           : null}
 
